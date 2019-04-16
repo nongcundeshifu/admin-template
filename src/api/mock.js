@@ -17,6 +17,7 @@ const { Random } = Mock;
 // mock需要监听的api列表
 const rurlList = [
     apiType.USER_LOGIN,
+    apiType.GET_USER_INFO,
 ];
 
 // 监听接口

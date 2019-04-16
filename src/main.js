@@ -7,7 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import ElementUI from 'element-ui';
 
 // 路由
-import routerTest from './router-test';
+// import routerTest from './router-test';
+import './permission';
 
 Vue.config.productionTip = false;
 

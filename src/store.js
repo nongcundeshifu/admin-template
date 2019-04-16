@@ -6,12 +6,14 @@ Vue.use(Vuex)
 
 const TOKEN_KEY = 'token_key';
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state: {
+        // 存储token，用以判断用户是否登录了。
         token: Cookies.get(TOKEN_KEY),
         userName: '',
-        // 角色，可能是多个角色
+        // 角色，可能是多个角色，存储角色信息
         roles: [],
+        permissionData: null,
     },
     mutations: {
         setToken(store, token) {
@@ -19,10 +21,18 @@ export default new Vuex.Store({
         },
         setRoles(store, roles) {
             store.roles = roles;
-        }
+        },
+        setPermissionData(store, permissionData) {
+            store.permissionData = permissionData;
+        },
     },
     getters: {
         roles: store => store.roles,
+        token: store => store.token,
+        permissionData: store => store.permissionData,
     },
     actions: {}
 })
+window.store = store;
+
+export default store;

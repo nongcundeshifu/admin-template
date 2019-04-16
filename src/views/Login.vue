@@ -19,6 +19,10 @@
     
     import { userLogin } from "../api/userLogin";
     import { mapGetters, mapMutations } from 'vuex';
+    import Cookie from 'js-cookie';
+    const TOKEN_KEY = 'token_key';
+    // cookie过期时间
+    const EXPIRES_TIME = 1;
 
     export default {
         name: 'Login',
@@ -29,7 +33,14 @@
             }
         },
         computed: {
-            ...mapGetters(['roles']),
+            ...mapGetters(['roles', 'token']),
+        },
+        mounted() {
+            if (this.token) {
+                this.$router.replace({
+                    path: '/index',
+                })
+            }
         },
         methods: {
             async submit() {
@@ -38,13 +49,18 @@
                 
                 const res = await userLogin({});
                 
+                // 用户登陆成功后，设置新的cookie中的token，并设置vuex。
                 if (res.data.token) {
+                    this.setToken(res.data.token);
+                    Cookie.set(TOKEN_KEY, res.data.token, {
+                        expires: EXPIRES_TIME,
+                    });
                     this.$router.replace({
                         path: '/index',
-                    })
+                    });
                 }
                 else {
-                    this.$message.error('错了哦，这是一条错误消息');
+                    this.$message.error('出错了');
                 }
                 
                 

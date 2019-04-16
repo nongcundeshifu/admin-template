@@ -14,3 +14,11 @@ export const userLogin = ({ user, password }) => {
     });
 
 }
+
+/**
+ * 根据token获取用户信息（他不和token一起返回，而是分开）
+*/
+export const getUserInfo = () => {
+    return axios.post(apiTypes.GET_USER_INFO, {});
+}
+

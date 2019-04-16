@@ -11,13 +11,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 else {
     // 这是线上接口地址
-    baseUrl = 'https://game.flyh5.cn/game/wx31dd8e9bcce66497/feb_bmw_fs/';
+    baseUrl = 'https://game.flyh5.cn/game/wx31dd8e9bcce66497/';
 }
 
 // api列表，不包含公共接口前缀地址
 export default {
 
     USER_LOGIN: 'login',
+    GET_USER_INFO: 'userInfo',
 
 }
 

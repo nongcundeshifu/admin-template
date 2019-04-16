@@ -2,10 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const Index = () => import(/* webpackChunkName: "index" */ './views/Index.vue');
 const Login = () => import(/* webpackChunkName: "login" */ './views/Login.vue');
+const NotPermission = () => import(/* webpackChunkName: "not-permission" */ './views/NotPermission.vue');
 
 Vue.use(Router);
 
 const staticRoutes = [
+    {
+        path: '/',
+        redirect: '/index',
+    },
     {
         path: '/index',
         name: 'index',
@@ -15,6 +20,16 @@ const staticRoutes = [
         path: '/login',
         name: 'login',
         component: Login,
+    },
+    {
+        path: '/not-permission',
+        name: 'not-permission',
+        component: NotPermission,
+    },
+    {
+        path: '*',
+        name: '404',
+        component: Index,
     },
 ];
 
@@ -71,9 +86,12 @@ export const permissionsRoutes = [
 
 ];
 
-export default new Router({
+const route = new Router({
     routes: [
         ...staticRoutes,
         ...routerTest,
     ]
-})
+});
+window.route = route;
+
+export default route;

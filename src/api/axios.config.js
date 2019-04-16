@@ -7,12 +7,9 @@ import Qs from 'qs';
 
 
 
-
-
 export default {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-
     },
     data: {
 
