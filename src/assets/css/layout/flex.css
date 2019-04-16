@@ -1,0 +1,81 @@
+.flex {
+  display: flex;
+}
+
+.flex-v {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.flex-middle {
+  align-items: center;
+}
+
+.flex-end {
+  align-items: flex-end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+  width: 0;
+}
+
+.flex-v-1 {
+  flex: 1 1 0%;
+}
+
+.flex-zero-shrink {
+  flex-shrink: 0;
+}
+
+.flex-adapt {
+  flex: 1 0 auto;
+}
+
+.flex-justify-between {
+  justify-content: space-between;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-around {
+  justify-content: space-around;
+}
+
+.flex-justify-end {
+  justify-content: flex-end;
+}
+
+.flex-last-line-align:after {
+  content: "";
+  flex: auto;
+}
+
+
+/* 使用flex来进行水平垂直居中（一个集合） */
+
+.flex-middle-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

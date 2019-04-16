@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// 页面切换样式
+.fade-enter-active, .fade-leave-active {
+    transition: all 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    transform: scale(0.1);
+    opacity: 0;
+}
+
+/*滚动*/
+.scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}
+.scroll-x {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.scroll-y {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+/*文本隐藏 单行  */
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// webkit浏览器和移动端解决方案
+.multiple-lines-ellipsis-2{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    // （非规范属性）
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.multiple-lines-ellipsis-3{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    // （非规范属性）
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+// slide
+.slide-img {
+    width: 100%;
+    height: 408px;
+    
+    .slide-img-container {
+        height: 100%;
+    }
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+}
+
+.page-router-view {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}
+
+
+
+
