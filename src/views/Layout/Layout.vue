@@ -1,13 +1,14 @@
 <template>
     <div class="app-layout">
         
-        <div class="left">
-            <sidebar></sidebar>
+        <div class="left" :class="collapseClass">
+            <sidebar :menu-data="permissionData" :collapse="collapse"></sidebar>
         </div>
         
-        <div class="right">
-            <navbar></navbar>
+        <div class="right" :class="collapseClass">
+            <navbar :collapse.sync="collapse"></navbar>
             <page-main></page-main>
+            <slot></slot>
         </div>
         
         
@@ -18,9 +19,27 @@
     import Navbar from './component/Navbar';
     import PageMain from './component/PageMain';
     import Sidebar from './component/Sidebar/Sidebar';
+    import { mapGetters } from 'vuex';
     
     export default {
         name: 'Layout',
+        
+        data() {
+            return {
+                collapse: false,
+            }
+        },
+        
+        computed: {
+            ...mapGetters(['permissionData']),
+            collapseClass() {
+                return this.collapse ? 'collapse' : '';
+            }
+        },
+
+        methods: {
+        
+        },
         
         components: {
             Navbar,
@@ -30,7 +49,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
     .app-layout {
         width: 100%;
@@ -43,12 +62,30 @@
             height: 100%;
             background-color: rgb(50, 64, 87);
             width: 210px;
+            
+            &.collapse {
+                width: 64px;
+    
+                .el-menu .el-menu-item span, .el-menu .el-submenu .el-submenu__title span {
+                    height: 0;
+                    width: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    display: inline-block;
+                }
+            }
         }
         
         .right {
             min-height: 100%;
             padding-left: 210px;
+    
+            &.collapse {
+                padding-left: 64px;
+            }
         }
+        
+        
     }
     
 </style>

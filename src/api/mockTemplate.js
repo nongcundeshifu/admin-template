@@ -27,28 +27,45 @@ const userInfo = {
                 // 此权限的类型 item表示一个el-menu-item
                 // subMenu表示一个el-submenu，目前不支持el-menu-item-group
                 type: 'item',
-                index: 'test1',
+                path: '/index',
+                icon: 'el-icon-share',
+                text: '首页',
             },
             {
                 // 权限名
-                name: 'test2',
+                name: 'test',
                 // 此权限的类型
                 type: 'subMenu',
-                index: 'test2',
+                path: '/test',
+                icon: 'el-icon-share',
+                text: '测试组',
                 children: [
                     {
                         // 权限名
-                        name: 'test2-1',
+                        name: 'test1',
                         // 此权限的类型
                         type: 'item',
-                        index: 'test2-1',
+                        path: '/test/test1',
+                        icon: 'el-icon-share',
+                        text: '测试一',
                     },
                     {
                         // 权限名
-                        name: 'test2-2',
+                        name: 'test2',
                         // 此权限的类型
                         type: 'item',
-                        index: 'test2-2',
+                        path: '/test/test2',
+                        icon: 'el-icon-share',
+                        text: '测试二',
+                    },
+                    {
+                        // 权限名
+                        name: 'test3',
+                        // 此权限的类型
+                        type: 'item',
+                        path: '/test/test3',
+                        icon: 'el-icon-share',
+                        text: '测试三',
                     },
                 ],
             },

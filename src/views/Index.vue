@@ -1,5 +1,9 @@
 <template>
-    <layout></layout>
+    <layout>
+        <div>
+            我是首页
+        </div>
+    </layout>
 </template>
 
 <script>

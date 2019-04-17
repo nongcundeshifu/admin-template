@@ -37,6 +37,7 @@ const staticRoutes = [
 // 递归遍历了。因为反正是根据item类型来判断的，把item的数据提取出来为一个数组就好了。
 // 这就是数据的扁平化，避免深层次嵌套遍历。
 const check = (permission, urlName) => {
+
     if (_.isArray(permission)) {
         for (let i = 0; i < permission.length; i += 1) {
             const result = check(permission[i], urlName);
@@ -83,7 +84,6 @@ const checkPermission = (permissionData, route) => {
             return value === route.name;
         }) >= 0;
     }
-    console.log(result);
 
     return result;
 }
