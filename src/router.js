@@ -19,15 +19,31 @@ const test1 = () => import(/* webpackChunkName: "test1" */ './views/test/test1.v
 const test2 = () => import(/* webpackChunkName: "test2" */ './views/test/test2.vue');
 const test3 = () => import(/* webpackChunkName: "test3" */ './views/test/test3.vue');
 
+// menu组
+const menu1 = () => import(/* webpackChunkName: "menu1" */ './views/menu/menu1.vue');
+const menu2 = () => import(/* webpackChunkName: "menu2" */ './views/menu/menu2.vue');
+const menu1_1 = () => import(/* webpackChunkName: "menu1-1" */ './views/menu/menu1-1.vue');
+const menu1_2 = () => import(/* webpackChunkName: "menu1-2" */ './views/menu/menu1-2.vue');
 
 // 权限路由
 const permissionRoutes = [
 
     // 首页
     {
-        path: '/index',
-        name: 'index',
-        component: Index,
+        path: '/',
+        component: Layout,
+        redirect: '/index',
+        name: 'app',
+        children: [
+            {
+                path: 'index',
+                name: 'index',
+                component: Index,
+                meta: {
+                    title: 'index',
+                },
+            }
+        ],
     },
 
     // 测试页面
@@ -37,21 +53,81 @@ const permissionRoutes = [
         component: Layout,
         // 自动跳转到子路由中，因为这个父路由本身就只是一个布局容器。
         redirect: '/test/test1',
+        meta: {
+            title: 'test',
+        },
         children: [
             {
                 path: 'test1',
                 name: 'test1',
                 component: test1,
+                meta: {
+                    title: 'test1',
+                },
             },
             {
                 path: 'test2',
                 name: 'test2',
                 component: test2,
+                meta: {
+                    title: 'test2',
+                },
             },
             {
                 path: 'test3',
                 name: 'test3',
                 component: test3,
+                meta: {
+                    title: 'test3',
+                },
+            },
+        ],
+    },
+
+    // menu页面
+    {
+        path: '/menu',
+        name: 'menu',
+        component: Layout,
+        // 菜单中的层级不能让路由来对应，如果真的是子路由还好，不然就不能设置为子路由
+        redirect: '/menu/menu1',
+        meta: {
+            title: 'menu',
+        },
+        children: [
+            {
+                path: 'menu1',
+                name: 'menu1',
+                component: menu1,
+                redirect: '/menu/menu1/menu1-1',
+                meta: {
+                    title: 'menu1',
+                },
+            },
+            {
+                path: 'menu1/menu1-1',
+                name: 'menu1-1',
+                component: menu1_1,
+                meta: {
+                    title: 'menu1-1',
+                },
+            },
+            {
+                path: 'menu1/menu1-2',
+                name: 'menu1-2',
+                component: menu1_2,
+                meta: {
+                    title: 'menu1-2',
+                },
+            },
+
+            {
+                path: 'menu2',
+                name: 'menu2',
+                component: menu2,
+                meta: {
+                    title: 'menu2',
+                },
             },
         ],
     },
@@ -59,10 +135,6 @@ const permissionRoutes = [
 
 
 const staticRoutes = [
-    {
-        path: '/',
-        redirect: '/index',
-    },
 
     {
         path: '/login',

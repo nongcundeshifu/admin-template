@@ -15,10 +15,11 @@ const { Random } = Mock;
 
 
 // mock需要监听的api列表
-const rurlList = [
-    apiType.USER_LOGIN,
-    apiType.GET_USER_INFO,
-];
+const rurlList = [];
+
+for(let key in mockTemp) {
+    rurlList.push(key);
+}
 
 // 监听接口
 rurlList.forEach((rurl) => {

@@ -7,8 +7,8 @@
         
         <div class="right" :class="collapseClass">
             <navbar :collapse.sync="collapse"></navbar>
+            <tag-page></tag-page>
             <page-main></page-main>
-            <slot></slot>
         </div>
         
         
@@ -19,6 +19,7 @@
     import Navbar from './component/Navbar';
     import PageMain from './component/PageMain';
     import Sidebar from './component/Sidebar/Sidebar';
+    import TagPage from './component/TagPage';
     import { mapGetters } from 'vuex';
     
     export default {
@@ -45,6 +46,7 @@
             Navbar,
             PageMain,
             Sidebar,
+            TagPage,
         },
     }
 </script>

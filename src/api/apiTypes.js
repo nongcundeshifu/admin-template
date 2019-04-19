@@ -18,7 +18,9 @@ else {
 export default {
 
     USER_LOGIN: 'login',
-    GET_USER_INFO: 'userInfo',
+    GET_USER_INFO_ADMIN: 'userInfo11',
+    GET_USER_INFO_EDIT: 'userInfo22',
+    GET_USER_INFO_VISITOR: 'userInfo33',
 
 }
 

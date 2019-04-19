@@ -64,20 +64,21 @@ const check = (permission, urlName) => {
 
 }
 
-// 一个页面权限的缓存。
-const cache = new Map();
+// 一个页面权限的缓存。(如果切换了权限，缓存应该也要更换的)
+// const cache = new Map();
 
 // 校验此页面是否符合权限
 // 优化：你可以提供递归校验的缓存。每一个item的校验结果都缓存起来。
 const checkPermission = (permissionData, route) => {
     let result = false;
-    if (cache.has(route.name)) {
-        result = cache.get(route.name);
-    }
-    else {
-        result = check(permissionData, route.name);
-        cache.set(route.name, result);
-    }
+    // if (cache.has(route.name)) {
+    //     result = cache.get(route.name);
+    // }
+    // else {
+    //     result = check(permissionData, route.name);
+    //     cache.set(route.name, result);
+    // }
+    result = check(permissionData, route.name);
     if (!result) {
         // 静态路由的校验
         result = staticRoutes.findIndex((value) => {
@@ -107,6 +108,7 @@ router.beforeEach((to, from , next) => {
                 // 以获取用户角色信息
                 const result = checkPermission(store.getters.permissionData, to);
                 if (result) {
+                    store.commit('addTagPage', to);
                     // 权限通过
                     next();
                     NProgress.done();
@@ -121,15 +123,15 @@ router.beforeEach((to, from , next) => {
             }
             else {
                 // 未获取角色信息
-                getUserInfo().then(({ data }) => {
-                    store.commit('setRoles', data.rolesInfo.roles);
-                    store.commit('setPermissionData', data.rolesInfo.permission);
+                store.dispatch('getRolesInfo', { type: 'admin' }).then(({ data }) => {
+
                     // 根据permission数据，获取此用户真正的可访问路由表，使用addRouters方法
                     // 根据permission数据，此时路由中的路由是完全是静态的，那么在每次进行路由跳转
                     // 时，我们都需要判断此用户是否有次路由的权限。
                     // 上面两种方法的permission数据都是一样的，即只有这个用户的可访问的权限列表
                     const result = checkPermission(data.rolesInfo.permission, to);
                     if (result) {
+                        store.commit('addTagPage', to);
                         // 权限通过
                         next();
                         NProgress.done();
@@ -138,12 +140,13 @@ router.beforeEach((to, from , next) => {
                         // 权限未通过
                         next({
                             path: '/not-permission',
+                            replace: true,
                         });
                         NProgress.done();
                     }
 
                 }).catch(() => {
-                    // 获取失败
+                    // 获取失败，退出登录
                 });
 
             }
@@ -169,6 +172,10 @@ router.beforeEach((to, from , next) => {
         });
         NProgress.done();
     }
+})
+
+router.afterEach(() => {
+    NProgress.done() // finish progress bar
 })
 
 

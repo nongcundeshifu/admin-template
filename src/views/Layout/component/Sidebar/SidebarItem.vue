@@ -23,17 +23,18 @@
         <template v-if="menuItemData && menuItemData.type === 'item'">
             <el-menu-item :index="menuItemData.path" :route="{path: menuItemData.path}">
                 <i :class="menuItemData.icon"></i>
-                <span>{{menuItemData.text}}</span>
+                <span>{{$t(`menuList.${i18nField}.text`)}}</span>
             </el-menu-item>
         </template>
     
-        <template v-if="menuItemData && menuItemData.type === 'subMenu'">
+        <template v-if="menuItemData && menuItemData.type === 'subMenu' && menuItemData.children.length > 0">
             <el-submenu :index="menuItemData.index">
                 <template slot="title">
                     <i :class="menuItemData.icon"></i>
-                    <span>{{menuItemData.text}}</span>
+                    <span>{{$t(`menuList.${i18nField}.text`)}}</span>
                 </template>
-                <sidebar-item v-for="(value) in menuItemData.children" :key="value.name" :menu-item-data="value"></sidebar-item>
+                <sidebar-item v-for="(value) in menuItemData.children" :key="value.name"
+                              :menu-item-data="value" :i18n-field="`${i18nField}.children.${value.name}`"></sidebar-item>
             </el-submenu>
             
         </template>
@@ -50,6 +51,9 @@
             menuItemData: {
                 type: Object,
             },
+            i18nField: {
+                type: String,
+            }
         },
     }
 </script>

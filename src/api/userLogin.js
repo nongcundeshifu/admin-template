@@ -7,13 +7,8 @@ import apiTypes from './apiTypes';
 import _ from "lodash";
 
 
-export const userLogin = ({ user, password }) => {
-
-    return axios.post(apiTypes.USER_LOGIN, {
-        user,
-        password,
-    });
-
+export const userLogin = () => {
+    return axios.post(apiTypes.USER_LOGIN, {});
 }
 
 
@@ -65,13 +60,19 @@ const addIndexToPermissionData = (permission, index) => {
 
 }
 
+// 权限角色 admin edit visitor
+const roles = {
+    admin: apiTypes.GET_USER_INFO_ADMIN,
+    edit: apiTypes.GET_USER_INFO_EDIT,
+    visitor: apiTypes.GET_USER_INFO_VISITOR,
+}
 
 /**
  * 根据token获取用户信息（他不和token一起返回，而是分开）
 */
-export const getUserInfo = () => {
-
-    return axios.post(apiTypes.GET_USER_INFO, {}).then((res) => {
+export const getUserInfo = ({ type = 'visitor' } = {}) => {
+    return axios.post(roles[type], {}).then((res) => {
+        console.log(res.data);
         addIndexToPermissionData(res.data.rolesInfo.permission, null);
         return res;
     });

@@ -12,7 +12,8 @@
         >
             <!-- 看你是想在这里进行循环还是在item内部进行循环了，都可以 -->
             <template v-if="menuData">
-                <sidebar-item v-for="(value) in menuData" :key="value.name" :menu-item-data="value"></sidebar-item>
+                <sidebar-item v-for="(value) in menuData" :key="value.name"
+                              :menu-item-data="value" :i18n-field="value.name"></sidebar-item>
             </template>
             
     
