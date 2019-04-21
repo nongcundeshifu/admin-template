@@ -21,12 +21,14 @@ function getToken() {
 const ignorePage = [
     '/login',
     '/not-permission',
+    '/ssrTest',
 ];
 
 // 静态路由，不需要进行权限验证的
 const staticRoutes = [
     'login',
     'not-permission',
+    'ssr-test',
 ];
 
 
@@ -50,7 +52,8 @@ const check = (permission, urlName) => {
 
     if (_.isObject(permission)) {
         if (permission.type === 'item') {
-            return permission.name === urlName;
+            // return permission.name === urlName;
+            return permission.name === urlName && permission;
         }
         if (permission.type === 'subMenu') {
             return check(permission.children, urlName);
@@ -86,8 +89,15 @@ const checkPermission = (permissionData, route) => {
         }) >= 0;
     }
 
+    if (_.isObject(result)) {
+        route.meta.permissionData = result;
+        return true;
+    }
+
+
     return result;
 }
+
 
 
 // 全局路由守卫

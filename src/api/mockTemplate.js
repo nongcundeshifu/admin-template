@@ -23,6 +23,8 @@ const adminRolesInfo = {
             path: '/index',
             icon: 'el-icon-share',
             text: '首页',
+            // 页面中的权限
+            permission: ['edit', 'submit'],
         },
         {
             // 权限名
@@ -123,6 +125,7 @@ const editRolesInfo = {
             path: '/index',
             icon: 'el-icon-share',
             text: '首页',
+            permission: ['edit'],
         },
         {
             // 权限名

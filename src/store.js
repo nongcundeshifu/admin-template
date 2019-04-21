@@ -7,6 +7,8 @@ Vue.use(Vuex)
 
 const TOKEN_KEY = 'token_key';
 
+const tagPageIgnoreList = ['login', 'not-permission'];
+
 
 
 const store = new Vuex.Store({
@@ -39,6 +41,10 @@ const store = new Vuex.Store({
 
         addTagPage(store, tagData) {
             const tagPageList = store.tagPageList.splice(0);
+
+            if (tagPageIgnoreList.includes(tagData.name)) {
+                return;
+            }
 
             let tarageIndex = null;
             tagPageList.forEach((tagPage, index) => {

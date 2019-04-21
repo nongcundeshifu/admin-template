@@ -32,7 +32,7 @@ export default {
                             text: '菜单1-1',
                         },
                         'menu1-2': {
-                            text: '菜单1-1',
+                            text: '菜单1-2',
                         },
                     },
                 },

@@ -6,6 +6,7 @@ import Router from 'vue-router';
 
 const Login = () => import(/* webpackChunkName: "login" */ './views/Login.vue');
 const NotPermission = () => import(/* webpackChunkName: "not-permission" */ './views/NotPermission.vue');
+const ssrTest = () => import(/* webpackChunkName: "ssrTest" */ './views/SSRTest.vue');
 
 Vue.use(Router);
 
@@ -146,6 +147,11 @@ const staticRoutes = [
         name: 'not-permission',
         component: NotPermission,
     },
+    {
+        path: '/ssrTest',
+        name: 'ssr-test',
+        component: ssrTest,
+    },
     ...permissionRoutes,
     {
         path: '*',
@@ -212,6 +218,7 @@ export const permissionsRoutes = [
 ];
 
 const route = new Router({
+    mode: 'history',
     routes: [
         ...staticRoutes,
         ...routerTest,
